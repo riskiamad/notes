@@ -1,16 +1,14 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-import Hapi from '@hapi/hapi';
-import notesPlugin from './api/notes/index.js';
-import NotesService from './services/inMemory/NotesService.js';
-import NotesValidator from './validator/notes/index.js';
+require('dotenv').config();
+const Hapi = require('@hapi/hapi');
+const notes = require('./api/notes');
+const NotesService = require('./services/postgres/NotesService');
+const NotesValidator = require('./validator/notes');
 
 const init = async () => {
   const notesService = new NotesService();
   const server = Hapi.server({
     port: process.env.PORT,
-    host: process.env.HOST,
+    host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
     routes: {
       cors: {
         origin: ['*'],
@@ -19,7 +17,7 @@ const init = async () => {
   });
 
   await server.register({
-    plugin: notesPlugin,
+    plugin: notes,
     options: {
       service: notesService,
       validator: NotesValidator,

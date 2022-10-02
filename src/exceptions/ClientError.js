@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 class ClientError extends Error {
     constructor(message, statusCode = 400) {
         super(message);
@@ -6,4 +7,4 @@ class ClientError extends Error {
     }
 }
 
-export default ClientError;
+module.exports = ClientError;

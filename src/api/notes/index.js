@@ -1,5 +1,5 @@
-import NotesHandler from './handler.js';
-import routes from './routes.js';
+const NotesHandler = require('./handler');
+const routes = require('./routes');
 
 const notesPlugin = {
   name: 'notes',
@@ -10,4 +10,4 @@ const notesPlugin = {
   },
 };
 
-export default notesPlugin;
+module.exports = notesPlugin;
