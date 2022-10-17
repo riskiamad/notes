@@ -4,7 +4,6 @@ const {
   DeleteAuthenticationPayloadSchema,
 } = require('./schema');
 const InvariantError = require('../../exceptions/InvariantError');
-const { payload } = require('@hapi/hapi/lib/validation');
 
 const AuthenticationsValidator = {
   validatePostAuthenticationPayload: (payload) => {
